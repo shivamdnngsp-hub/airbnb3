@@ -20,9 +20,13 @@ const port = process.env.PORT;
 console.log("ENV TEST:", process.env.CLOUDINARY_NAME);
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://airbnb3.vercel.app"
+  ],
   credentials: true
 }));
+
 app.use(express.static("public"))
 app.use(express.json());
 app.use(cookieParser());
