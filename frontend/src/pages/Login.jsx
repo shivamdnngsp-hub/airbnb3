@@ -6,39 +6,39 @@ import { useDispatch } from "react-redux";
 import { onlogin } from "../store/authSlice";
 import { useState } from "react";
 
-
 const Login = () => {
 
-  const [error, setError] = useState("")
-
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);   
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm();
 
   const submit = async (data) => {
     try {
+      setLoading(true);        
+      setError("");
+
       const res = await api.post("/auth/login", data);
 
       console.log("Login success:", res.data);
-      dispatch(onlogin(res.data.user))
+      dispatch(onlogin(res.data.user));
 
       navigate("/");
     } catch (error) {
       if (error.response?.data?.message) {
-        setError(error.response?.data?.message)
+        setError(error.response?.data?.message);
+      } else {
+        setError("failed to login");
       }
-      else {
-        setError("failed to login")
-      }
-
+    } finally {
+      setLoading(false);       
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 relative">
-
-
 
       <button
         onClick={() => navigate(-1)}
@@ -49,7 +49,10 @@ const Login = () => {
         <ArrowLeft className="w-5 h-5 text-gray-800" />
       </button>
 
-      <form className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 space-y-6" onSubmit={handleSubmit(submit)}>
+      <form
+        className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 space-y-6"
+        onSubmit={handleSubmit(submit)}
+      >
 
         <h2 className="text-2xl font-semibold text-gray-900 text-center">
           Login to your account
@@ -63,6 +66,7 @@ const Login = () => {
             {...register("email")}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500"
             required
+            disabled={loading}   
           />
         </div>
 
@@ -74,17 +78,20 @@ const Login = () => {
             {...register("password")}
             className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500"
             required
+            disabled={loading}   
           />
         </div>
+
         <p className="text-red-500 text-sm text-center mb-2">
           {error}
         </p>
 
         <button
           type="submit"
-          className="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2.5 rounded-lg transition"
+          disabled={loading}    
+          className="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2.5 rounded-lg transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}   
         </button>
 
         <p className="text-center text-sm text-gray-600">

@@ -8,10 +8,14 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm();
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);  
 
   const submit = async (data) => {
     try {
+      setLoading(true);      
+      setError("");
+
       const res = await api.post("/auth/signup", data);
 
       console.log("Signup success:", res.data.user);
@@ -19,12 +23,12 @@ const Signup = () => {
       navigate("/login");
     } catch (error) {
       if (error.response?.data?.message) {
-        setError(error.response?.data?.message)
+        setError(error.response?.data?.message);
+      } else {
+        setError("failed to create Account");
       }
-      else {
-        setError("failed to  create Account")
-      }
-
+    } finally {
+      setLoading(false);    
     }
   };
 
@@ -55,6 +59,7 @@ const Signup = () => {
             type="text"
             placeholder="Enter your name"
             className="w-full rounded-lg border border-gray-300 px-4 py-2"
+            disabled={loading}  
           />
         </div>
 
@@ -65,6 +70,7 @@ const Signup = () => {
             type="email"
             placeholder="Enter your email"
             className="w-full rounded-lg border border-gray-300 px-4 py-2"
+            disabled={loading}   
           />
         </div>
 
@@ -75,20 +81,20 @@ const Signup = () => {
             type="password"
             placeholder="Enter your password"
             className="w-full rounded-lg border border-gray-300 px-4 py-2"
+            disabled={loading}   
           />
         </div>
-
 
         <p className="text-red-500 text-sm text-center mb-2">
           {error}
         </p>
 
-
         <button
           type="submit"
-          className="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2.5 rounded-lg transition"
+          disabled={loading}   
+          className="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2.5 rounded-lg transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Sign up
+          {loading ? "Creating account..." : "Sign up"}  
         </button>
 
         <p className="text-center text-sm text-gray-600">

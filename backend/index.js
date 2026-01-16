@@ -31,9 +31,10 @@ app.use(cors({
 }));
 
 
-app.use(express.static("public"))
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.static("public"));
+
 
 
 app.get("/", (req, res) => {
@@ -51,5 +52,6 @@ app.use("/api/booking", bookingRouter)
 
 app.listen(port, () => {
   connectDb();
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on port ${port}`);
+
 });
