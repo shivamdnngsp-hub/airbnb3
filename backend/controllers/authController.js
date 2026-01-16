@@ -99,8 +99,8 @@ export const logout = async (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      secure: true,          
+      sameSite: "none",    
     });
 
     return res.status(200).json({
