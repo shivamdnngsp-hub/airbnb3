@@ -63,7 +63,7 @@ const Details = () => {
       {/* for  mobile */}
       <div className="sm:hidden ">
 
-        <section className="sticky top-14 h-100">
+        <section className=" h-100">
           {details.photos && details.photos.length > 0 && (
             <img
               src={details.photos[0]}
