@@ -170,7 +170,7 @@ const Header = () => {
       </div>
       {/* for mobile*/}
 
-      <div className="flex sm:hidden items-center justify-center h-14  px-3 ">
+      <div className="flex sm:hidden items-center justify-center h-14 fixed z-50 px-3 ">
         <Searchbar></Searchbar>
       </div>
     </header>
