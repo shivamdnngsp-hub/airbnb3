@@ -8,14 +8,20 @@ const Layout = () => {
     location.pathname.startsWith("/listing/") &&
     !location.pathname.startsWith("/listing/category");
 
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
       <div className={`${isDetailsPage ? "hidden lg:block" : "block"}`}>
         <Header />
       </div>
 
-    
-      <div className={`${isDetailsPage ? "pt-0 lg:pt-24" : "pt-16 sm:pt-24"}`}>
+      <div
+        className={`
+          ${isDetailsPage ? "pt-0 lg:pt-24" : ""}
+          ${!isDetailsPage && !isHomePage ? "pt-16 sm:pt-24" : ""}
+        `}
+      >
         <Outlet />
       </div>
     </>
