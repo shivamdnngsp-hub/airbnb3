@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const BottomMobile = () => {
     const navigate = useNavigate()
     return (
-        <div className="fixed bottom-0 z-20 flex sm:hidden bg-white h-15 ...">
+        <div className="sticky bottom-0 z-20 flex sm:hidden bg-white h-15 justify-between items-center pl-10 pr-10">
 
 
 
