@@ -34,7 +34,9 @@ export const signup = async (req, res, next) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      domain: "airbnb-backend-xpor.onrender.com",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
 
@@ -73,11 +75,12 @@ export const login = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,          
-      sameSite: "none",      
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: true,
+      sameSite: "none",
+      domain: "airbnb-backend-xpor.onrender.com",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
-
 
     return res.status(200).json({
       message: "User logged in successfully",
@@ -99,9 +102,12 @@ export const logout = async (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: true,          
-      sameSite: "none",    
+      secure: true,
+      sameSite: "none",
+      domain: "airbnb-backend-xpor.onrender.com",
+      path: "/",
     });
+
 
     return res.status(200).json({
       message: "User registered successfully",
