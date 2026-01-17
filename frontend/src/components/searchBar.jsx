@@ -30,7 +30,8 @@ const Searchbar = () => {
     }, [query]);
 
     return (
-        <div className="relative w-90 lg:w-105">
+       <div className="relative w-full max-w-90 lg:max-w-105">
+
 
             <div className="flex items-center border rounded-full px-4 py-2 bg-white shadow-sm hover:shadow-md transition">
                 <input
