@@ -35,7 +35,7 @@ const ReserveBar = ({ price }) => {
 
 
   return (
-    (showBar && <div className=" fixed bottom-0 left-0 right-0 z-50 bg-white px-4 py-3 flex justify-between items-center shadow-md sm:hidden">
+    (showBar && <div className=" fixed bottom-0 left-0 right-0 z-1000 bg-white px-4 py-3 flex justify-between items-center shadow-md sm:hidden">
 
       <div>
         <p className="text-sm text-gray-500">Price</p>
