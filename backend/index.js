@@ -16,7 +16,7 @@ import bookingRouter from "./routers/bookingRouter.js";
 const app = express();
 
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 console.log("ENV TEST:", process.env.CLOUDINARY_NAME);
 
 app.set("trust proxy", 1);
@@ -33,7 +33,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static("public"));
+
 
 
 
@@ -48,7 +48,10 @@ app.use("/api/users", userRouter);
 app.use("/api/listing", listingRouter);
 app.use("/api/favs", favsRouter);
 app.use("/api/search", searchingRouter)
-app.use("/api/booking", bookingRouter)
+app.use("/api/booking", bookingRouter)  
+
+app.use(express.static("public"));
+
 
 app.listen(port, () => {
   connectDb();
