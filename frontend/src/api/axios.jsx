@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://airbnb-backend-xpor.onrender.com/api",
+   baseURL: "https://airbnb-backend-xpor.onrender.com/api",
   withCredentials: true
 });
 
