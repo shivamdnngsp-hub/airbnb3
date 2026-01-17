@@ -37,7 +37,7 @@ const CatList = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[60vh]">
+      <div className="flex items-center justify-center min-h-[calc(100vh-568px)]">
         <Loader />
       </div>
     );
@@ -46,7 +46,7 @@ const CatList = () => {
 
   if (catListings.length === 0) {
     return (
-      <div className="flex items-center justify-center h-[60vh] text-gray-500">
+      <div className="flex items-center justify-center min-h-[calc(100vh-568px)] text-gray-500">
         Nothing to show in this category
       </div>
     );

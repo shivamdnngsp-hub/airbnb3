@@ -9,7 +9,7 @@ const Listings = () => {
     const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
-  
+
 useEffect(() => {
   const controller = new AbortController();
 
@@ -40,7 +40,7 @@ useEffect(() => {
 
  if (loading) {
     return (
-      <div className="flex items-center justify-center h-[60vh]">
+      <div className="flex items-center justify-center min-h-[calc(100vh-568px)]">
         <Loader />
       </div>
     );
