@@ -14,10 +14,10 @@ const Layout = () => {
         <Header />
       </div>
 
-      <div className="pt-16 sm:pt-24">
+    
+      <div className={`${isDetailsPage ? "pt-0 lg:pt-24" : "pt-16 sm:pt-24"}`}>
         <Outlet />
       </div>
-
     </>
   );
 };
