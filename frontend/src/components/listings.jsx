@@ -3,17 +3,22 @@ import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import AddFavButton from "./addFavButton";
 import { useSelector } from "react-redux";
+import Loader from "./loader";
 
 const Listings = () => {
+    const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   useEffect(() => {
     const getListings = async () => {
       try {
+          setLoading(true);
         const res = await api.get("/listing/getlisting");
         setListings(res.data);
       } catch (err) {
         console.log("Unable to fetch listings");
+      }finally {
+        setLoading(false);
       }
     };
     getListings();
@@ -22,6 +27,17 @@ const Listings = () => {
 
 
   const user = useSelector((state) => state.auth.user)
+
+
+ if (loading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <Loader />
+      </div>
+    );
+  }
+
+
 
 
   return (
