@@ -50,8 +50,7 @@ useEffect(() => {
 
 
   return (
-    <div className="px-3 sm:px-6 lg:px-8 py-4 pb-20 sm:pb-4">
-
+    <div className="px-3 sm:px-6 lg:px-8 py-4">
 
       <div
         className="
