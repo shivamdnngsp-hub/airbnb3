@@ -61,9 +61,9 @@ const Details = () => {
 
 
       {/* for  mobile */}
-      <div className="sm:hidden ">
+      <div className="sm:hidden w-full overflow-x-hidden">
 
-        <section className=" h-100">
+        <section className="h-80 w-full overflow-hidden">
           {details.photos && details.photos.length > 0 && (
             <img
               src={details.photos[0]}
@@ -73,8 +73,7 @@ const Details = () => {
           )}
         </section>
 
-
-        <section className="relative z-10 -mt-16 rounded-t-3xl bg-white min-h-screen shadow-lg h-240 ">
+        <section className="relative z-10 rounded-t-3xl bg-white min-h-screen shadow-lg">
 
           <div className="flex justify-center pt-3">
             <div className="h-1 w-12 rounded-full bg-gray-300"></div>
@@ -86,13 +85,11 @@ const Details = () => {
               {details.title}
             </h1>
 
-
             <p className="text-center text-lg text-gray-800">
               In {details.location}
             </p>
 
             <hr className="my-3" />
-
 
             <p className="text-gray-700 leading-relaxed">
               {details.description}
@@ -108,27 +105,18 @@ const Details = () => {
             )}
           </div>
 
+          <div className="w-full bg-white p-6 flex flex-col items-center gap-2">
 
-
-
-          <div className=" w-95 h-50 bg-white p-6  flex flex-col  items-center gap-2 ">
-
-            <div className="mx-4 mb-3 bg-white  h-10 w-90 flex items-center justify-center rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.12)] ">
+            <div className="mb-3 h-10 w-full flex items-center justify-center rounded-xl shadow">
               🏷️ Prices include all fees
             </div>
 
+            <div className="w-full bg-white rounded-xl shadow p-5 space-y-4 flex flex-col items-center">
 
-
-            <div className="w-90 bg-white rounded-xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] p-5 space-y-4 flex flex-col items-center">
-
-              <div>
-                <TotalPrice
-                  date={date}
-                  pricePerNight={details.price}
-                />
-              </div>
+              <TotalPrice date={date} pricePerNight={details.price} />
               <DatePicker date={date} setDate={setDate} />
               <GuestsInput guests={guests} setGuests={setGuests} />
+
               <Reserve
                 startDate={date?.[0]?.startDate}
                 endDate={date?.[0]?.endDate}
@@ -139,9 +127,11 @@ const Details = () => {
             </div>
           </div>
 
-          <ReserveBar price={details.price}></ReserveBar>
+          <ReserveBar price={details.price} />
+
         </section>
       </div>
+
 
 
       <div className="m-5 hidden sm:flex gap-8"> {/*for laptop*/}
