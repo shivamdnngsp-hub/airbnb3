@@ -9,20 +9,29 @@ const Listings = () => {
     const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
-  useEffect(() => {
-    const getListings = async () => {
-      try {
-          setLoading(true);
-        const res = await api.get("/listing/getlisting");
-        setListings(res.data);
-      } catch (err) {
+  
+useEffect(() => {
+  const controller = new AbortController();
+
+  const getListings = async () => {
+    try {
+      const res = await api.get("/listing/getlisting", {
+        signal: controller.signal
+      });
+      setListings(res.data);
+    } catch (err) {
+      if (err.name !== "CanceledError") {
         console.log("Unable to fetch listings");
-      }finally {
-        setLoading(false);
       }
-    };
-    getListings();
-  }, []);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  getListings();
+
+  return () => controller.abort();
+}, []);
 
 
 
