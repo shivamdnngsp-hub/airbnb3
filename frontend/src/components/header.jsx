@@ -64,7 +64,7 @@ const Header = () => {
   return (
     <header
       className="
-        sticky top-0 z-70
+        fixed top-0 z-70
         bg-white
         
         shadow-sm
@@ -170,7 +170,7 @@ const Header = () => {
       </div>
       {/* for mobile*/}
 
-      <div className="flex sm:hidden items-center justify-center h-14 fixed z-50 px-3 ">
+      <div className="flex sm:hidden items-center justify-center h-14 px-3 ">
         <Searchbar></Searchbar>
       </div>
     </header>
