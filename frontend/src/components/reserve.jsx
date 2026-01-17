@@ -34,7 +34,11 @@ const Reserve = ({ startDate, endDate, guests, id }) => {
         endDate: endDate.toISOString(),
         guests,
         id,
-      });
+      },
+        {
+          withCredentials: true
+        }
+      );
 
       if (res.data.success) {
         navigate("/mybooking");
