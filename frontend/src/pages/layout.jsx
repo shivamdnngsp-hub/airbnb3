@@ -4,7 +4,9 @@ import Header from "../components/header";
 const Layout = () => {
   const location = useLocation();
 
-  const isDetailsPage = location.pathname.startsWith("/listing/");
+  const isDetailsPage =
+    location.pathname.startsWith("/listing/") &&
+    !location.pathname.startsWith("/listing/category");
 
   return (
     <>
