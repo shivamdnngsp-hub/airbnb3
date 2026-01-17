@@ -73,7 +73,7 @@ const Searchbar = () => {
 
                         >
                             <img
-                                src={`http://localhost:8000/${item.photos[0]}`}
+                                src={item.photos[0]}
                                 alt={item.title}
                                 className="w-12 h-12 rounded-md object-cover"
                             />
