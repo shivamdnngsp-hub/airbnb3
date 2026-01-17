@@ -14,7 +14,10 @@ const Layout = () => {
         <Header />
       </div>
 
-      <Outlet />
+      <div className="pt-16 sm:pt-24">
+        <Outlet />
+      </div>
+
     </>
   );
 };
